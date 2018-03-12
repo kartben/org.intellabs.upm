@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="lib" path="lib/upm_interfaces.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="lib" path="lib/mraa.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/upm_apa102.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/upm_bmp280.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/upm_bmp280.jar" sourcepath="/Users/kartben/Repositories/upm/src/bmp280"/>
 	<classpathentry exported="true" kind="lib" path="lib/upm_utilities.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/upm_interfaces.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
