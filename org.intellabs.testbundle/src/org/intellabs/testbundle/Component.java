@@ -11,41 +11,53 @@
  */
 package org.intellabs.testbundle;
 
-import upm_bmp280.BMP280;
+import upm_th02.TH02;
 
 public class Component {
 
-	// code below is taken from the UPM Java sample code for BMP280, licensed
-	// under the terms of the MIT license.
-	// https://github.com/intel-iot-devkit/upm/blob/master/examples/java/BMP280_Example.java
-	protected void activate() {
+    private Thread t;
+    private boolean running = true;
 
-		// Instantiate a BMP280 instance using default i2c bus and address
-		BMP280 sensor = new BMP280();
+    // code below is taken from the UPM Java sample code for TH02, licensed
+    // under the terms of the MIT license.
+    // https://github.com/intel-iot-devkit/upm/blob/master/examples/java/TH02_Example.java
+    protected void activate() {
+        TH02 sensor = new TH02();
 
-		// For SPI, bus 0, you would pass -1 as the address, and a
-		// valid pin for CS:
-		// BMP280(0, -1, 10);
+        Runnable task = () -> {
 
-		while (true) {
-			// update our values from the sensor
-			sensor.update();
+            float temperature = 0;
+            float humidity = 0;
 
-			System.out.println("Compensation Temperature: " + sensor.getTemperature() + " C / "
-					+ sensor.getTemperature(true) + " F");
+            System.out.println("START");
 
-			System.out.println("Pressure: " + sensor.getPressure() + " Pa");
+            while (running) {
+                temperature = sensor.getTemperature();
+                humidity = sensor.getHumidity();
 
-			System.out.println("Computed Altitude: " + sensor.getAltitude() + " m");
+                System.out.println("Temperature = " + temperature + ", Humidity = " + humidity);
 
-			System.out.println();
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+                System.out.println();
+                try {
+                    Thread.sleep(30000);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
 
-	}
+            System.out.println("STOP");
+        };
+
+        t = new Thread(task);
+        t.start();
+
+    }
+
+    protected void deactivate() {
+        running = false;
+        System.out.println("Deactivating component");
+
+    }
+
 }

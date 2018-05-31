@@ -8,9 +8,10 @@ Bundle-ClassPath: .,
  lib/mraa.jar,
  lib/upm_bmp280.jar,
  lib/upm_utilities.jar,
- lib/upm_interfaces.jar
-Bundle-Nativecode: native/libjavaupm_bmp280.so;native/libupmc-bmp280.so;native/libupm-bmp280.so;native/libmraajava.so;native/libupm-interfaces.so;native/libupm-utilities.so;native/libmraa.so;native/libmraa.so.1;native/libmraa.so.1.8.0
+ lib/upm_interfaces.jar,
+ lib/upm_th02.jar
 Export-Package: mraa,
  upm_bmp280,
  upm_interfaces,
+ upm_th02,
  upm_utilities
